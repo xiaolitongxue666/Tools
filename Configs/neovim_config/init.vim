@@ -1,10 +1,46 @@
 let mapleader=" "
 
+" ====================
+" === Editor Setup ===
+" ====================
+
+" ===
+" === System 
+" ===
+
+" compatible with vi
+set nocompatible
+" automatic change working dir at now edit file's path
+set autochdir
+" let the color compatible to terminal
+let &t_ut=' '
+
 " ===
 " === Editor behavior
 " ===
 
-"high light syntax
+" file type identification
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+
+" encoding format
+set encoding=utf-8
+
+" expand tab
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+" show the space at the end of line
+set list
+
+" open the fiel cursor at hte last edited position
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"highutochdir light syntax
 syntax on
 "show line number
 set number
@@ -87,8 +123,8 @@ map sj :set nosplitright<CR>:vsplit<CR>
 map si :set nosplitbelow<CR>:split<CR>
 map sk :set splitbelow<CR>:split<CR>
 
-"=== 
-"=== management plug
+"===
+"=== Manage plug
 "=== in normal mode type "PlugInstall" to install plugs
 "===
 "vim-plug begin
