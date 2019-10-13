@@ -480,7 +480,7 @@ set termguicolors     " enable true colors support
 "colorscheme snazzy
 let g:space_vim_transp_bg = 1
 "set background=dark
-colorscheme space_vim_theme
+"colorscheme space_vim_theme
 let g:airline_theme='dracula'
 
 let g:lightline = {
@@ -707,6 +707,6 @@ map <LEADER>a :call Calc()<CR>
 
 let g:user_emmet_leader_key='<C-f>'
 " Open the _machine_specific.vim file if it has just been created
-if has_machine_specific_file == 0
-  exec "e ~/.config/nvim/_machine_specific.vim"
-endif
+"if has_machine_specific_file == 0
+"  exec "e ~/.config/nvim/_machine_specific.vim"
+"endif
