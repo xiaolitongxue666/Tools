@@ -309,41 +309,41 @@ map <LEADER>/ :set splitbelow<CR>:sp<CR>:term<CR>
 "map tx :r !figlet
 
 " Compile function
-map r :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-  exec "w"
-  if &filetype == 'c'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %<"
-  elseif &filetype == 'sh'
-    :!time bash %
-  elseif &filetype == 'python'
-    set splitright
-    :vsp
-    :vertical resize-20
-    :term python3 %
-  elseif &filetype == 'html'
-    exec "!chromium % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  endif
-endfunc
+"map r :call CompileRunGcc()<CR>
+"func! CompileRunGcc()
+  "exec "w"
+  "if &filetype == 'c'
+    "exec "!g++ % -o %<"
+    "exec "!time ./%<"
+  "elseif &filetype == 'cpp'
+    "exec "!g++ % -o %<"
+    "exec "!time ./%<"
+  "elseif &filetype == 'java'
+    "exec "!javac %"
+    "exec "!time java %<"
+  "elseif &filetype == 'sh'
+    ":!time bash %
+  "elseif &filetype == 'python'
+    "set splitright
+    ":vsp
+    ":vertical resize-20
+    ":term python3 %
+  "elseif &filetype == 'html'
+    "exec "!chromium % &"
+  "elseif &filetype == 'markdown'
+    "exec "MarkdownPreview"
+  "endif
+"endfunc
 
-map R :call CompileBuildrrr()<CR>
-func! CompileBuildrrr()
-  exec "w"
-  if &filetype == 'vim'
-    exec "source $MYVIMRC"
-  elseif &filetype == 'markdown'
-    exec "echo"
-  endif
-endfunc
+"map R :call CompileBuildrrr()<CR>
+"func! CompileBuildrrr()
+  "exec "w"
+  "if &filetype == 'vim'
+    "exec "source $MYVIMRC"
+  "elseif &filetype == 'markdown'
+    "exec "echo"
+  "endif
+"endfunc
 
 
 " ===
@@ -351,7 +351,7 @@ endfunc
 " === In normal mode type "PlugInstall" to install plugs
 " ===
 "vim-plug begin
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim')
 
 "Pretty Dress
 "status bar
@@ -385,12 +385,12 @@ Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-markdown-subscope'
 
 " Language Server
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+    "\ 'branch': 'next',
+    "\ 'do': 'bash install.sh',
+    "\ }
 
-" (Optional) Multi-entry selection UI.
+"" (Optional) Multi-entry selection UI.
 Plug 'junegunn/fzf'
 
 " Undo Tree
@@ -533,6 +533,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>": "\<CR>")
 autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
+
+"Add by xiaoli
+"let g:python3_host_prog=/usr/bin/python3
+
 let ncm2#popup_delay = 5
 let g:ncm2#matcher = "substrfuzzy"
 let g:ncm2_jedi#python_version = 3
