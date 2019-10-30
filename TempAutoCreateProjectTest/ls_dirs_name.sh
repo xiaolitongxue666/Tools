@@ -7,8 +7,8 @@ function getdir(){
         then 
             echo $dir_or_file
             getdir $dir_or_file
-        else
-            echo $dir_or_file
+        # else
+        #     echo $dir_or_file
         fi  
     done
 }
