@@ -5,8 +5,9 @@ function getdir(){
         dir_or_file=$1"/"$element
         if [ -d $dir_or_file ]
         then 
-            echo $dir_or_file
-            getdir $dir_or_file
+            # echo $dir_or_file
+            # getdir $dir_or_file
+			nop
         else
             echo $dir_or_file
         fi  
@@ -21,23 +22,3 @@ getdir $root_dir
 #if want to echo to clipboard
 #install a mini tool use "apt-get install xclip"
 #./ls_all_dirs_name.sh component | awk '{print "INCLUDES\t+= -I$(MK_ROOT)/" $0 }' | xclip 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-	
-	
