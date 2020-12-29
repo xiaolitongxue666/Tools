@@ -28,7 +28,9 @@ echo -e "include(./include_directories.cmake)" >> $cmake_list_file_path
 echo -e "\n" >> $cmake_list_file_path
 
 #src files
+echo "file(GLOB_RECURSE SOURCES "  >> $cmake_list_file_path
 ls -F | grep "/$" | awk '{print "./"$0"*.c ./"$0"*.h" }' | xargs >> $cmake_list_file_path
+echo ")"  >> $cmake_list_file_path
 
 #A new line
 echo -e "\n" >> $cmake_list_file_path
