@@ -56,18 +56,116 @@ git_ignore_file_path="./.gitignore"
 if [ ! -f "$git_ignore_file_path" ]; then
   touch "$git_ignore_file_path"
 
+#Create C project ignore file
+if [ $project_type = "c" ];then
+echo "Create a C project ignore file"
+cat > $git_ignore_file_path <<EOF
+	# Prerequisites
+	*.d
+
+	# Object files
+	*.o
+	*.ko
+	*.obj
+	*.elf
+
+	# Linker output
+	*.ilk
+	*.map
+	*.exp
+
+	# Precompiled Headers
+	*.gch
+	*.pch
+
+	# Libraries
+	*.lib
+	*.a
+	*.la
+	*.lo
+
+	# Shared objects (inc. Windows DLLs)
+	*.dll
+	*.so
+	*.so.*
+	*.dylib
+
+	# Executables
+	*.exe
+	*.out
+	*.app
+	*.i*86
+	*.x86_64
+	*.hex
+
+	# Debug files
+	*.dSYM/
+	*.su
+	*.idb
+	*.pdb
+
+	# Kernel Module Compile Results
+	*.mod*
+	*.cmd
+	.tmp_versions/
+	modules.order
+	Module.symvers
+	Mkfile.old
+	dkms.conf
+EOF
+fi
+
+#Create C++ project ignore file
+if [ $project_type = "cpp" ];then
+    echo "Create a C++ project ignore file"
+	cat > $git_ignore_file_path <<EOF
+	# Prerequisites
+	*.d
+
+	# Compiled Object files
+	*.slo
+	*.lo
+	*.o
+	*.obj
+
+	# Precompiled Headers
+	*.gch
+	*.pch
+
+	# Compiled Dynamic libraries
+	*.so
+	*.dylib
+	*.dll
+
+	# Fortran module files
+	*.mod
+	*.smod
+
+	# Compiled Static libraries
+	*.lai
+	*.la
+	*.a
+	*.lib
+
+	# Executables
+	*.exe
+	*.out
+	*.app
+
+EOF
+fi
+
   #Write default ignore rules
   #IDE(Idea) data
-  echo -e "# Personal intermediate dirs and files" >> $git_ignore_file_path
-  echo -e ".idea/" >> $git_ignore_file_path
-  echo -e "cmake-build-debug/" >> $git_ignore_file_path
-  #Build shell and cmake data
-  echo -e "build_sh/" >> $git_ignore_file_path
   #A new line
   echo -e "\n" >> $git_ignore_file_path
-  #Intermediate files
-  #Project type default ignore intermediate files
-  cat ./git_ignore_default_c.txt >> $git_ignore_file_path
+  echo -e "	# Personal intermediate dirs and files" >> $git_ignore_file_path
+  echo -e "	.idea/" >> $git_ignore_file_path
+  echo -e "	cmake-build-debug/" >> $git_ignore_file_path
+  #Build shell and cmake data
+  echo -e "	build_sh/" >> $git_ignore_file_path
+  #A new line
+  echo -e "\n" >> $git_ignore_file_path
 fi
 
 #CMakeLists.txt update
@@ -86,7 +184,7 @@ echo -e "set(CMAKE_CXX_STANDARD 11)" >> $cmake_list_file_path
 echo -e "\n" >> $cmake_list_file_path
 
 #include dirs
-./ls_dirs_name.sh ./src | awk '{print "include_directories("$0")" }' >> $cmake_list_file_path
+ls_dirs_name.sh ./src | awk '{print "include_directories("$0")" }' >> $cmake_list_file_path
 
 #A new line
 echo -e "\n" >> $cmake_list_file_path
